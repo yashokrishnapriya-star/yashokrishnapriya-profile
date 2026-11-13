@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yasho Krishna Priya - Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+            line-height: 1.6;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #667eea);
+            background-size: 300% 100%;
+            animation: gradientLine 3s linear infinite;
+        }
+        @keyframes gradientLine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.3"/></svg>');
+            background-size: 50px 50px;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+        .header p {
+            font-size: 1.5em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: fadeIn 1.5s ease;
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .section {
+            padding: 50px 40px;
+            border-bottom: 1px solid #f0f0f0;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .section:nth-child(1) { animation-delay: 0.2s; }
+        .section:nth-child(2) { animation-delay: 0.4s; }
+        .section:nth-child(3) { animation-delay: 0.6s; }
+        .section:nth-child(4) { animation-delay: 0.8s; }
+        .section:nth-child(5) { animation-delay: 1.0s; }
+        .section:nth-child(6) { animation-delay: 1.2s; }
+        .section:nth-child(7) { animation-delay: 1.4s; }
+        .section:nth-child(8) { animation-delay: 1.6s; }
+        .section h2 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 35px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 15px;
+            position: relative;
+        }
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card h3 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        .photo-placeholder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 350px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: zoomIn 0.6s ease forwards;
+        }
+        .photo-placeholder:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center top;
+        }
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .video-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .video-container video {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .timeline {
+            margin-top: 25px;
+        }
+        .timeline-item {
+            padding: 20px;
+            margin-bottom: 20px;
+            background: white;
+            border-left: 5px solid #667eea;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .timeline-item strong {
+            color: #667eea;
+            font-size: 1.1em;
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: popIn 0.5s ease forwards;
+        }
+        .skill-tag:hover {
+            transform: scale(1.1);
+        }
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+        }
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .contact a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.3em;
+            transition: transform 0.3s;
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+        .contact a:hover {
+            transform: scale(1.2);
+        }
+        .contact a:nth-child(1) { animation-delay: 0.2s; }
+        .contact a:nth-child(2) { animation-delay: 0.4s; }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        .highlight-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+            .section {
+                padding: 30px 20px;
+            }
+            .section h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>YASHO KRISHNA PRIYA</h1>
+            <p>Age: 15 Years | 💃 Bharatanatyam Dancer | 🧘 Yoga Practitioner | 👑 Junior Miss India 2026</p>
+            <p style="margin-top: 10px; font-size: 1.1em;">🏆 Miss Creative | 🏆 Miss Talented</p>
+            <p style="margin-top: 15px; font-size: 1.2em;">
+                <a href="https://www.instagram.com/yasho_krishna_priya/" target="_blank" style="color: white; text-decoration: none; border: 2px solid white; padding: 10px 25px; border-radius: 25px; display: inline-block; margin: 0 10px; animation: pulse 2s infinite;">📸 Instagram</a>
+            </p>
+        </div>
+        </div>
+
+        <div class="section">
+            <h2>👤 About Me</h2>
+            <p>Yasho Krishna Priya is a passionate Bharatanatyam dancer with 10 years of training under the guidance of Parshwanath Upadhye, Shruti Gopal, and Aditya PV at Upadhye School of Dance. She has performed at the Temple of Fine Arts, Kuala Lumpur, Malaysia, and various venues in Bangalore and across Karnataka. She has been honored with the prestigious Natya Kala Ilavarasi award in 2019 for her excellence in dance. She is also a certified yoga practitioner with 8 years of experience, winner of the CISCE Yoga Competition in 2024, and the Junior Miss India 2026 titleholder, winning Miss Creative and Miss Talented awards. Her dedication to the arts and wellness, combined with her grace and poise, has made her a role model for young women.</p>
+        </div>
+
+        <div class="section">
+            <h2>🎭 Dance Accomplishments</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Classical Training</h3>
+                    <p><strong>Dance Form:</strong> Bharatanatyam</p>
+                    <p><strong>Training Duration:</strong> 10 years</p>
+                    <p><strong>Guru:</strong> Parshwanath Upadhye, Shruti Gopal, and Aditya PV</p>
+                    <p><strong>Institution:</strong> Upadhye School of Dance</p>
+                </div>
+                <div class="card">
+                    <h3>Notable Performances</h3>
+                    <p><strong>International:</strong> Temple of Fine Arts, Kuala Lumpur, Malaysia</p>
+                    <p><strong>Regional:</strong> Various performances in Bangalore and Karnataka</p>
+                </div>
+                <div class="card">
+                    <h3>Awards</h3>
+                    <p><strong>Natya Kala Ilavarasi</strong> - 2019</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🧘 Yoga Accomplishments</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Yoga Training</h3>
+                    <p><strong>Duration:</strong> 8 years</p>
+                    <p><strong>Achievements:</strong> Won CISCE Yoga Competition in 2024</p>
+                    <p><strong>Competitions:</strong> Won many competitions and awards in Yoga</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>👑 Junior Miss India 2026</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Pageant Title</h3>
+                    <p><strong>Junior Miss India 2026</strong></p>
+                    <p><strong>Year:</strong> 2026</p>
+                </div>
+                <div class="card">
+                    <h3>Awards Won</h3>
+                    <p><strong>🏆 Miss Creative</strong></p>
+                    <p><strong>🏆 Miss Talented</strong></p>
+                </div>
+                <div class="card">
+                    <h3>Talent Round</h3>
+                    <p><strong>Dance Performance</strong></p>
+                    <p><strong>Bharatanatyam</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📸 Photo Gallery</h2>
+            <h3>🎭 Dance Photos</h3>
+            <div class="photo-grid">
+                <div class="photo-placeholder">
+                    <img src="photos/dance1.jpg" alt="Dance Performance 1">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photos/dance2.jpg" alt="Dance Performance 2">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photos/dance3.jpg" alt="Dance Performance 3">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photos/dance4.jpg" alt="Dance Performance 4">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photos/dance5.jpg" alt="Dance Performance 5">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photos/dance6.jpg" alt="Dance Performance 6">
+                </div>
+            </div>
+            
+            <h3>👑 Junior Miss India Photos</h3>
+            <div class="photo-grid">
+                <div class="photo-placeholder">
+                    <img src="photos/pageant1.jpg" alt="Pageant Photo 1">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photos/pageant2.jpg" alt="Pageant Photo 2">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photos/pageant3.jpg" alt="Pageant Photo 3">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photos/pageant4.jpg" alt="Pageant Photo 4">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photos/pageant5.jpg" alt="Pageant Photo 5">
+                </div>
+            </div>
+            
+            <h3>📷 Other Photos</h3>
+            <div class="photo-grid">
+                <div class="photo-placeholder">
+                    <img src="photos/new/other1.jpg" alt="Photo 1">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photos/new/other2.jpg" alt="Photo 2">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photos/new/other3.jpg" alt="Photo 3">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photos/new/other4.jpg" alt="Photo 4">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎬 Dance Videos</h2>
+            <div class="video-container">
+                <video controls width="800" poster="">
+                    <source src="photos/dance-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p style="text-align: center; margin-top: 15px; color: #666;">Dance Performance Video 1</p>
+            <div class="video-container" style="margin-top: 30px;">
+                <a href="https://www.instagram.com/p/DT-qaHzE3yD5YnRAvoMtBlem8eXwWeiCjhkkqI0/" target="_blank" style="color: #667eea; text-decoration: none; font-size: 1.2em; font-weight: bold;">📸 Watch on Instagram</a>
+            </div>
+            <p style="text-align: center; margin-top: 10px; color: #666;">Dance Performance Video 2</p>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Skills & Expertise</h2>
+            <div class="skills">
+                <span class="skill-tag">Classical Dance</span>
+                <span class="skill-tag">Bharatanatyam</span>
+                <span class="skill-tag">Yoga</span>
+                <span class="skill-tag">Meditation</span>
+                <span class="skill-tag">Stage Performance</span>
+                <span class="skill-tag">Choreography</span>
+                <span class="skill-tag">Teaching</span>
+                <span class="skill-tag">Public Speaking</span>
+                <span class="skill-tag">Modeling</span>
+                <span class="skill-tag">Acting</span>
+            </div>
+        </div>
+
+        <div class="contact">
+            <h2>📞 Contact</h2>
+            <p>For Dance, Modelling, Yoga and Acting Opportunities</p>
+            <br>
+            <p style="font-size: 1.3em; margin-bottom: 15px;">📱 +91 9916866337</p>
+            <a href="https://www.instagram.com/yasho_krishna_priya/" target="_blank" style="animation: pulse 2s infinite;">📸 Instagram</a>
+            <a href="mailto:yashokrishnapriya@gmail.com">📧 Email</a>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 Yasho Krishna Priya. All Rights Reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
